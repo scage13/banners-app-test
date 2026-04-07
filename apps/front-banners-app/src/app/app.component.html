@@ -1,0 +1,28 @@
+<header>Banner Creator (MVP)</header>
+<main>
+  <form [formGroup]="bannerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Title:</label>
+      <input id="title" type="text" formControlName="title" placeholder="Enter title">
+    </div>
+
+    <div>
+      <label for="image">Image:</label>
+      <input id="image" type="file" (change)="onFileChange($event)" accept="image/*">
+    </div>
+
+    <button type="submit" [disabled]="bannerForm.invalid">Create Banner</button>
+  </form>
+
+  <hr>
+
+  @if (imageBase64()) {
+    <div>
+      <p>Image Preview (Base64 ready):</p>
+      <img [src]="imageBase64()" alt="preview" style="max-width: 200px;">
+    </div>
+  }
+
+  <router-outlet></router-outlet>
+</main>
+<footer>Footer</footer>
