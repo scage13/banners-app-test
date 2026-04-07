@@ -1,0 +1,22 @@
+<div class="banners">
+  @for (banner of banners(); track banner.id) {
+    <div class="banner-item">
+      <div class="banner-title">
+        {{banner.title}}
+      </div>
+      <div class="banner-actions">
+        <button mat-icon-button (click)="editBanner(banner.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteBanner(banner.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="banner-image">
+        <img [src]="banner.image" alt="Banner Image" class="banner-image">
+      </div>
+    </div>
+  }
+
+
+</div>

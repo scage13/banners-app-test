@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { BannerDocument, CreateBannerDto } from '@workspace/shared-types';
+import { BannerDocument, BannersDB, CreateBannerDto } from '@workspace/shared-types';
 
 @Injectable()
 export class BannersService {
@@ -9,7 +9,7 @@ export class BannersService {
   private readonly uploadsDir = path.resolve(process.cwd(), 'apps', 'be-banners-app', 'uploads');
   private writePromise: Promise<void> = Promise.resolve();
 
-  private async readDb(): Promise<{ data: BannerDocument[] }> {
+  private async readDb(): Promise<BannersDB> {
     try {
       const fileContent = await fs.readFile(this.dbPath, 'utf-8');
 
@@ -23,7 +23,7 @@ export class BannersService {
     }
   }
 
-  private async initializeDb(): Promise<{ data: BannerDocument[] }> {
+  private async initializeDb(): Promise<BannersDB> {
     const dbDir = path.dirname(this.dbPath);
     await fs.mkdir(dbDir, { recursive: true });
     const initialData = { data: [] };
@@ -145,7 +145,7 @@ export class BannersService {
 
         try {
           await fs.unlink(oldPath);
-        } catch { /* empty */ }
+        } catch {/* empty */}
       }
 
       db.data[index].image = await this.processImage(base64Image);
@@ -175,7 +175,7 @@ export class BannersService {
 
       try {
         await fs.unlink(filePath);
-      } catch { /* empty */ }
+      } catch {/* empty */}
     }
 
     db.data.splice(index, 1);

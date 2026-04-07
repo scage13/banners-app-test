@@ -1,0 +1,90 @@
+:host {
+  display: block;
+}
+
+.drop-zone {
+  width: 100%;
+  min-height: 200px;
+  background: #e0e0e0;
+  border: 1px dashed #999;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-sizing: border-box;
+
+  &.dragging {
+    border: 2px solid #2196f3;
+    background: #f0f8ff;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.drop-text {
+  color: #757575;
+  font-size: 18px;
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.upload-btn {
+  background-color: #d1edff !important;
+  color: #000 !important;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 12px 24px;
+  height: auto;
+  line-height: normal;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  mat-icon {
+    margin: 0;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.preview-container {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  .preview-img {
+    max-width: 100%;
+    max-height: 180px;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  .remove-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+}

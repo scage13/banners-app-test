@@ -1,0 +1,26 @@
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-icon {
+  width: 40px;
+}
+
+.app-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: #f5f5f5;
+}

@@ -27,9 +27,7 @@ export class BannersController {
   }
 
   @Post()
-  async create(
-    @Body() createBannerDto: CreateBannerDto,
-  ): Promise<BannerDocument> {
+  async create(@Body() createBannerDto: CreateBannerDto): Promise<BannerDocument> {
     if (!createBannerDto.image) {
       throw new BadRequestException('Image is required');
     }

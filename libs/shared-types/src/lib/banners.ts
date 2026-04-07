@@ -1,3 +1,7 @@
+export type BannersDB = {
+  data: BannerDocument[]
+};
+
 export type BannerDocument = {
   id: string;
   title: string;

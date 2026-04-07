@@ -1,28 +1,58 @@
-<header>Banner Creator (MVP)</header>
-<main>
-  <form [formGroup]="bannerForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="title">Title:</label>
-      <input id="title" type="text" formControlName="title" placeholder="Enter title">
-    </div>
+<mat-toolbar>
+  <a routerLink="/" class="brand">
+    <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 140 140" preserveAspectRatio="none">
+      <path class="logo-main" stroke-dasharray="null" stroke-width="32" stroke="#228b22" fill="none" d="m15,15l110,0l0,110l-40,0c-10,-47.5 -21,-62.5 -70,-70z"></path>
+      <rect stroke-dasharray="null" stroke-width="0" fill="#000" height="52" width="52" y="88" x="0"></rect>
+    </svg>
 
-    <div>
-      <label for="image">Image:</label>
-      <input id="image" type="file" (change)="onFileChange($event)" accept="image/*">
-    </div>
+    <span>{{ appName }}</span>
+  </a>
 
-    <button type="submit" [disabled]="bannerForm.invalid">Create Banner</button>
-  </form>
+  <span class="spacer"></span>
+</mat-toolbar>
 
-  <hr>
-
-  @if (imageBase64()) {
-    <div>
-      <p>Image Preview (Base64 ready):</p>
-      <img [src]="imageBase64()" alt="preview" style="max-width: 200px;">
-    </div>
-  }
-
+<main class="app-content">
   <router-outlet></router-outlet>
 </main>
-<footer>Footer</footer>
+
+<footer class="app-footer">
+  <a>{{ appName }}</a>
+  <span>{{ year }}</span>
+</footer>
+
+
+<!--    <mat-card-content>-->
+<!--      <form [formGroup]="bannerForm" (ngSubmit)="onSubmit()" class="banner-form">-->
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Title</mat-label>-->
+<!--          <input matInput id="title" type="text" formControlName="title" placeholder="Enter title">-->
+<!--          @if (bannerForm.get('title')?.hasError('required')) {-->
+<!--            <mat-error>Title is required</mat-error>-->
+<!--          }-->
+<!--        </mat-form-field>-->
+
+<!--        <div class="file-input-container">-->
+<!--          <div class="file-input-label">Banner Image:</div>-->
+<!--          <app-image-input formControlName="image"></app-image-input>-->
+<!--          @if (bannerForm.get('image')?.touched && bannerForm.get('image')?.hasError('required')) {-->
+<!--            <mat-error style="font-size: 12px; margin-top: 4px;">Image is required</mat-error>-->
+<!--          }-->
+<!--        </div>-->
+
+<!--        <button mat-raised-button color="primary" type="submit" [disabled]="bannerForm.invalid">-->
+<!--          <mat-icon>save</mat-icon>-->
+<!--          Create Banner-->
+<!--        </button>-->
+<!--      </form>-->
+<!--    </mat-card-content>-->
+
+<!--  @if (imageBase64()) {-->
+<!--    <mat-card class="preview-card">-->
+<!--      <mat-card-header>-->
+<!--        <mat-card-title class="preview-card-title">Image Preview</mat-card-title>-->
+<!--      </mat-card-header>-->
+<!--      <mat-card-content>-->
+<!--        <img [src]="imageBase64()" alt="preview" class="preview-img">-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+<!--  }-->

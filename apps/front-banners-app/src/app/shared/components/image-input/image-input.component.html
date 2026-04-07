@@ -1,0 +1,51 @@
+<div
+  class="drop-zone"
+  role="button"
+  tabindex="0"
+  [class.dragging]="isDragging()"
+  [class.disabled]="disabled()"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+  (click)="fileInput.click()"
+>
+  <div class="content">
+    @if (!value()) {
+      <p class="drop-text">
+        Перетягніть сюди зображення<br>
+        або<br>
+        натисніть на кнопку<br>
+        <b>«обрати зображення»</b>
+      </p>
+    } @else {
+      <div class="preview-container" (click)="$event.stopPropagation()" role="button" tabindex="0">
+        <img [src]="value()" alt="Preview" class="preview-img">
+        <button type="button" mat-icon-button class="remove-btn" (click)="value.set(null); onChange(null)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    }
+
+    <input
+      type="file"
+      #fileInput
+      hidden
+      accept="image/*"
+      (change)="onFileChange($event)"
+      [disabled]="disabled()"
+    >
+
+    <button
+      type="button"
+      mat-flat-button
+      class="upload-btn"
+      [disabled]="disabled()"
+      (click)="$event.stopPropagation(); fileInput.click()"
+    >
+      <span>
+        обрати зображення
+        <mat-icon>file_download</mat-icon>
+      </span>
+    </button>
+  </div>
+</div>

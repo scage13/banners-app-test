@@ -1,70 +1,75 @@
-import { Component, ChangeDetectionStrategy, signal, InjectionToken, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-export const API_URL = new InjectionToken<string>('API_URL', {
-  providedIn: 'root',
-  factory: () => (window as any).API_URL || 'http://localhost:4321/api/banners',
-});
-import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+// export const API_URL = new InjectionToken<string>('API_URL', {
+//   providedIn: 'root',
+//   factory: () => (window as any).API_URL || 'http://localhost:4321/api/banners',
+// });
+// import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { ImageInputComponent } from './shared/components/image-input/image-input.component';
 
 @Component({
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [
+    RouterModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+  ],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: ``,
+  styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  bannerForm: FormGroup;
+
+  appName = 'Banners App';
+  year = new Date().getFullYear();
+  // bannerForm: FormGroup;
   imageBase64 = signal<string | null>(null);
-  private apiUrl = inject(API_URL);
+  // private apiUrl = inject(API_URL);
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
-    this.bannerForm = this.fb.group({
-      title: ['', Validators.required],
-      image: [null, Validators.required],
-    });
-  }
-
-  onFileChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        const base64String = reader.result as string;
-        this.imageBase64.set(base64String);
-        this.bannerForm.patchValue({ image: base64String });
-      };
-
-      reader.onerror = (error) => {
-        console.error('Error reading file: ', error);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  }
-
-  onSubmit() {
-    if (this.bannerForm.valid) {
-      console.log('Sending Banner Data:', this.bannerForm.value);
-
-      this.http.post(this.apiUrl, this.bannerForm.value).subscribe({
-        next: (response) => {
-          console.log('Success:', response);
-          alert('Banner created successfully!');
-          this.bannerForm.reset();
-          this.imageBase64.set(null);
-        },
-        error: (error) => {
-          console.error('Error:', error);
-          alert('Failed to create banner. Check console for details.');
-        }
-      });
-    } else {
-      alert('Please fill the form correctly.');
-    }
-  }
+  // constructor(
+  //   private fb: FormBuilder,
+  //   private http: HttpClient,
+  // ) {
+  //   this.bannerForm = this.fb.group({
+  //     title: ['', Validators.required],
+  //     image: [null, Validators.required],
+  //   });
+  //
+  //   this.bannerForm.get('image')?.valueChanges.subscribe(value => {
+  //     this.imageBase64.set(value);
+  //   });
+  // }
+  //
+  // onSubmit() {
+  //   if (this.bannerForm.valid) {
+  //     console.log('Sending Banner Data:', this.bannerForm.value);
+  //
+  //     this.http.post(this.apiUrl, this.bannerForm.value).subscribe({
+  //       next: (response) => {
+  //         console.log('Success:', response);
+  //         alert('Banner created successfully!');
+  //         this.bannerForm.reset();
+  //         this.imageBase64.set(null);
+  //       },
+  //       error: (error) => {
+  //         console.error('Error:', error);
+  //         alert('Failed to create banner. Check console for details.');
+  //       }
+  //     });
+  //   } else {
+  //     alert('Please fill the form correctly.');
+  //   }
+  // }
 }

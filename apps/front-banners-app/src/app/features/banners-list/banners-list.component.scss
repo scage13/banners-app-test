@@ -1,0 +1,45 @@
+.banners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.banner-item {
+  position: relative;
+  flex-basis: calc(33% - 32px);
+  max-width: calc(33% - 32px);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px 0px rgba(127, 147, 169, 0.43);
+
+  &:hover {
+    .banner-actions {
+      opacity: 1;
+    }
+  }
+}
+
+.banner-title {
+  margin-bottom: 16px;
+  padding-right: 88px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.banner-actions {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.banner-image {
+  height: 300px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
