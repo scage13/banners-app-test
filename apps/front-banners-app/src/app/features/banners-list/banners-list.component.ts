@@ -4,6 +4,7 @@ import { MatIconButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { BannerDocument } from '@workspace/shared-types';
 import { BannersService } from '../../core/services/banners.service';
+import { NotificationService } from '../../core/services/notification.service';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatTooltip } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
@@ -18,6 +19,7 @@ export class BannersListComponent implements OnInit {
   banners = signal<BannerDocument[]>([]);
 
   bannersService = inject(BannersService);
+  notification = inject(NotificationService);
   dialog = inject(MatDialog);
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ export class BannersListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.bannersService.deleteBanner(id).subscribe(() => {
+          this.notification.bannerDeleted();
           this.banners.update((banners) => banners.filter((b) => b.id !== id));
         });
       }

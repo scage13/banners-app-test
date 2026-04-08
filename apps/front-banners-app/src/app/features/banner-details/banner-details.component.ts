@@ -2,6 +2,7 @@ import { Component, inject, input, signal } from '@angular/core';
 import { BannerDocument } from '@workspace/shared-types';
 import { BannerFormComponent } from '../../shared/components/banner-form/banner-form.component';
 import { BannersService } from '../../core/services/banners.service';
+import { NotificationService } from '../../core/services/notification.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,6 +15,7 @@ export class BannerDetailsComponent {
   banner = signal<BannerDocument | null>(null);
 
   bannersService = inject(BannersService);
+  notification = inject(NotificationService);
   route = inject(ActivatedRoute);
 
   ngOnInit(): void {
@@ -21,6 +23,10 @@ export class BannerDetailsComponent {
   }
 
   onSubmit(event: Omit<BannerDocument, 'id'>) {
-    this.bannersService.updateBanner({ id: this.banner()?.id as string, ...event }).subscribe();
+    this.bannersService
+      .updateBanner({ id: this.banner()?.id as string, ...event })
+      .subscribe(() => {
+        this.notification.bannerUpdated();
+      });
   }
 }
