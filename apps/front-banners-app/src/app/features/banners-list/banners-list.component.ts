@@ -5,12 +5,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { BannerDocument } from '@workspace/shared-types';
 import { BannersService } from '../../core/services/banners.service';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatTooltip } from '@angular/material/tooltip';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'banners-list',
   templateUrl: './banners-list.component.html',
   styleUrls: ['./banners-list.component.scss'],
-  imports: [MatIcon, MatIconButton],
+  imports: [MatIcon, MatIconButton, MatTooltip, RouterLink],
 })
 export class BannersListComponent implements OnInit {
   banners = signal<BannerDocument[]>([]);
@@ -19,7 +21,11 @@ export class BannersListComponent implements OnInit {
   dialog = inject(MatDialog);
 
   ngOnInit(): void {
-    this.bannersService.getBanners().subscribe(banners => {
+    this.getBanners();
+  }
+
+  getBanners() {
+    this.bannersService.getBanners().subscribe((banners) => {
       this.banners.set(banners);
     });
   }

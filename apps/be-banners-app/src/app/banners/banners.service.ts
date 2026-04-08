@@ -137,7 +137,7 @@ export class BannersService {
       db.data[index].title = title;
     }
 
-    if (base64Image !== undefined) {
+    if (base64Image) {
       const oldFilename = db.data[index].image;
 
       if (oldFilename) {

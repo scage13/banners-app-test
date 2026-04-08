@@ -8,7 +8,10 @@
     <span>{{ appName }}</span>
   </a>
 
-  <span class="spacer"></span>
+  <a class="banner-create-btn" mat-button routerLink="banners/create">
+    <mat-icon>add</mat-icon>
+    <span class="banner-create-btn__label">Create Banner</span>
+  </a>
 </mat-toolbar>
 
 <main class="app-content">
@@ -19,40 +22,3 @@
   <a>{{ appName }}</a>
   <span>{{ year }}</span>
 </footer>
-
-
-<!--    <mat-card-content>-->
-<!--      <form [formGroup]="bannerForm" (ngSubmit)="onSubmit()" class="banner-form">-->
-<!--        <mat-form-field appearance="outline">-->
-<!--          <mat-label>Title</mat-label>-->
-<!--          <input matInput id="title" type="text" formControlName="title" placeholder="Enter title">-->
-<!--          @if (bannerForm.get('title')?.hasError('required')) {-->
-<!--            <mat-error>Title is required</mat-error>-->
-<!--          }-->
-<!--        </mat-form-field>-->
-
-<!--        <div class="file-input-container">-->
-<!--          <div class="file-input-label">Banner Image:</div>-->
-<!--          <app-image-input formControlName="image"></app-image-input>-->
-<!--          @if (bannerForm.get('image')?.touched && bannerForm.get('image')?.hasError('required')) {-->
-<!--            <mat-error style="font-size: 12px; margin-top: 4px;">Image is required</mat-error>-->
-<!--          }-->
-<!--        </div>-->
-
-<!--        <button mat-raised-button color="primary" type="submit" [disabled]="bannerForm.invalid">-->
-<!--          <mat-icon>save</mat-icon>-->
-<!--          Create Banner-->
-<!--        </button>-->
-<!--      </form>-->
-<!--    </mat-card-content>-->
-
-<!--  @if (imageBase64()) {-->
-<!--    <mat-card class="preview-card">-->
-<!--      <mat-card-header>-->
-<!--        <mat-card-title class="preview-card-title">Image Preview</mat-card-title>-->
-<!--      </mat-card-header>-->
-<!--      <mat-card-content>-->
-<!--        <img [src]="imageBase64()" alt="preview" class="preview-img">-->
-<!--      </mat-card-content>-->
-<!--    </mat-card>-->
-<!--  }-->

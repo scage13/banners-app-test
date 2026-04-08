@@ -1,0 +1,62 @@
+:host {
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.banner-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.banner-form-title {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 600;
+}
+.banner-form-group {
+  max-width: 300px;
+  flex-basis: 300px;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+  max-width: calc(100% - 316px);
+  padding: 10px 0;
+}
+
+.preview-image {
+  position: relative;
+  min-width: 300px;
+  min-height: 40px;
+  border-radius: 16px;
+  border: 1px dashed #e0e0e0;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.preview-image-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+}
+
+.save-btn {
+  width: 300px;
+}

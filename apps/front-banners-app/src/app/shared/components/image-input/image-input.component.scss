@@ -1,5 +1,11 @@
 :host {
   display: block;
+
+  &.ng-dirty.ng-invalid {
+    .drop-zone {
+      border-color: #f44336;
+    }
+  }
 }
 
 .drop-zone {
@@ -11,14 +17,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 24px 16px;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   box-sizing: border-box;
 
   &.dragging {
-    border: 2px solid #2196f3;
+    border: 1px solid #2196f3 !important;
     background: #f0f8ff;
   }
 
@@ -48,7 +54,7 @@
   color: #000 !important;
   border-radius: 8px;
   font-size: 20px;
-  padding: 12px 24px;
+  padding: 16px;
   height: auto;
   line-height: normal;
 
@@ -63,28 +69,5 @@
     font-size: 24px;
     width: 24px;
     height: 24px;
-  }
-}
-
-.preview-container {
-  width: 100%;
-  margin-bottom: 20px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-
-  .preview-img {
-    max-width: 100%;
-    max-height: 180px;
-    border-radius: 8px;
-    object-fit: contain;
-  }
-
-  .remove-btn {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 }

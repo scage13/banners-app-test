@@ -1,0 +1,8 @@
+@if (banner(); as bannerData) {
+  <banner-form
+    [title]="bannerData.title"
+    [image]="bannerData.image"
+    [mode]="'update'"
+    (emitSubmit)="onSubmit($event)"
+  ></banner-form>
+}

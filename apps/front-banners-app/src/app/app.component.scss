@@ -1,3 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -10,10 +16,22 @@
   width: 40px;
 }
 
+.banner-create-btn {
+  margin-left: auto;
+}
+
+.banner-create-btn__label {
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
 .app-content {
+  flex: 1;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 16px;
+  padding: 80px 16px;
 }
 
 .app-footer {

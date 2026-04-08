@@ -15,12 +15,14 @@ export class BannersService {
     return this.httpClient.get<BannerDocument>(`/banners/${id}`);
   }
 
-  addNewBanner(banner: BannerDocument): Observable<BannerDocument> {
+  addNewBanner(banner: Omit<BannerDocument, 'id'>): Observable<BannerDocument> {
     return this.httpClient.post<BannerDocument>('/banners', banner);
   }
 
-  updateBanner(id: string, banner: BannerDocument): Observable<BannerDocument> {
-    return this.httpClient.put<BannerDocument>(`/banners/${id}`, banner);
+  updateBanner({ id, title, image }: BannerDocument): Observable<BannerDocument> {
+    const body = image ? { title, image } : { title };
+
+    return this.httpClient.put<BannerDocument>(`/banners/${id}`, body);
   }
 
   deleteBanner(id: string): Observable<void> {

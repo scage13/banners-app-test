@@ -16,14 +16,20 @@
     .banner-actions {
       opacity: 1;
     }
+
+    .banner-title {
+      padding-right: 72px;
+    }
   }
 }
 
 .banner-title {
   margin-bottom: 16px;
-  padding-right: 88px;
   font-size: 16px;
   line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .banner-actions {

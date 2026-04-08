@@ -10,21 +10,9 @@
   (click)="fileInput.click()"
 >
   <div class="content">
-    @if (!value()) {
-      <p class="drop-text">
-        Перетягніть сюди зображення<br>
-        або<br>
-        натисніть на кнопку<br>
-        <b>«обрати зображення»</b>
-      </p>
-    } @else {
-      <div class="preview-container" (click)="$event.stopPropagation()" role="button" tabindex="0">
-        <img [src]="value()" alt="Preview" class="preview-img">
-        <button type="button" mat-icon-button class="remove-btn" (click)="value.set(null); onChange(null)">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-    }
+    <p class="drop-text">
+      <ng-content select="[drop-text]"></ng-content>
+    </p>
 
     <input
       type="file"

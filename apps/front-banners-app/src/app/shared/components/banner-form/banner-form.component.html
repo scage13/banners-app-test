@@ -1,0 +1,38 @@
+<h1 class="banner-form-title">{{ mode() === 'create' ? 'Новий банер' : 'Редагування банеру' }}</h1>
+<form class="banner-form" [formGroup]="bannerForm" (ngSubmit)="onSubmit()">
+  <div class="banner-form-group">
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Введіть назву банеру</mat-label>
+      <input matInput id="title" type="text" formControlName="title">
+      @if (bannerForm.get('title')?.hasError('required')) {
+        <mat-error>Title is required</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="file-input-container">
+      <app-image-input class="form-control" formControlName="image">
+        <p drop-text>
+          Перетягніть сюди зображення<br>
+          або<br>
+          натисніть на кнопку<br>
+          <b>«обрати зображення»</b>
+        </p>
+      </app-image-input>
+    </div>
+  </div>
+  @if (imageBase64()) {
+    <div class="preview">
+      <button class="save-btn" mat-raised-button color="primary" type="submit" [disabled]="bannerForm.invalid">
+        Зберегти
+      </button>
+      <div class="preview-image">
+        <div class="preview-image-actions">
+          <button mat-icon-button (click)="removeImage()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <img [src]="imageBase64()" alt="preview" class="preview-img">
+      </div>
+    </div>
+  }
+</form>

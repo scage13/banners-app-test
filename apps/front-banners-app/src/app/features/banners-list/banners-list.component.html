@@ -2,12 +2,12 @@
   @for (banner of banners(); track banner.id) {
     <div class="banner-item">
       <div class="banner-title">
-        {{banner.title}}
+        <span [matTooltip]="banner.title" [matTooltipPosition]="'above'">{{banner.title}}</span>
       </div>
       <div class="banner-actions">
-        <button mat-icon-button (click)="editBanner(banner.id)">
+        <a mat-icon-button [routerLink]="['/banners', banner.id]">
           <mat-icon>edit</mat-icon>
-        </button>
+        </a>
         <button mat-icon-button (click)="deleteBanner(banner.id)">
           <mat-icon>delete</mat-icon>
         </button>
