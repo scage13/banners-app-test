@@ -2,7 +2,7 @@
   "data": [
     {
       "id": "1775626461199",
-      "title": "Title 1",
+      "title": "Title 1 patched test",
       "image": "image-1775626461197-211864214.png"
     },
     {
@@ -18,12 +18,17 @@
     {
       "id": "1775627253982",
       "title": "Title 4 test",
-      "image": "image-1775629697013-643524226.png"
+      "image": "image-1775630740536-486806486.webp"
     },
     {
       "id": "1775629771100",
       "title": "Test 5 Long long long banner ttitle kek",
-      "image": "image-1775629771100-240616321.png"
+      "image": "image-1775630772934-998772146.webp"
+    },
+    {
+      "id": "1775630806149",
+      "title": "Новий Банер 3",
+      "image": "image-1775630806149-21413983.png"
     }
   ]
 }
