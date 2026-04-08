@@ -10,6 +10,8 @@ export class BannersService {
   private writePromise: Promise<void> = Promise.resolve();
 
   private async readDb(): Promise<BannersDB> {
+    await this.writePromise;
+
     try {
       const fileContent = await fs.readFile(this.dbPath, 'utf-8');
 
@@ -33,13 +35,24 @@ export class BannersService {
   }
 
   private async writeDb(content: { data: BannerDocument[] }): Promise<void> {
-    // Race Condition
+    const payload = JSON.stringify(content, null, 2);
+
     this.writePromise = this.writePromise.then(async () => {
-      await fs.writeFile(
-        this.dbPath,
-        JSON.stringify(content, null, 2),
-        'utf-8',
+      const dir = path.dirname(this.dbPath);
+      const tmpPath = path.join(
+        dir,
+        `.db-${process.pid}-${Date.now()}-${Math.random().toString(16).slice(2)}.tmp`,
       );
+
+      try {
+        await fs.writeFile(tmpPath, payload, 'utf-8');
+        await fs.rename(tmpPath, this.dbPath);
+      } catch (err) {
+        try {
+          await fs.unlink(tmpPath);
+        } catch {/* empty */}
+        throw err;
+      }
     });
 
     return this.writePromise;
@@ -111,7 +124,7 @@ export class BannersService {
     const newBanner: BannerDocument = {
       id: Date.now().toString(),
       title,
-      image: filename, // Зберігаємо тільки назву файлу
+      image: filename,
     };
 
     db.data.push(newBanner);
